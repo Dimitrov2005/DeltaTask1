@@ -1,21 +1,17 @@
 package platform;
 
-import java.util.ArrayList;
-
 public class Bill {
     private int price;
     private boolean payable;
 
+    public void setPayable(Client client){
+        if(!client.isHasPaid())// if the client hasn't paid=> can pay the bill
+            payable=true;
 
-
-    public int getPrice(){
-        return this.price;
+        else payable=false;
     }
 
-    public static void main(String[] args) {
-        ArrayList<Bill> bills= new ArrayList<Bill>();
-        if(!Client.hasPaid && )
-        bills.add(new Bill());
-
+    public boolean isPayable() {
+        return payable;
     }
 }

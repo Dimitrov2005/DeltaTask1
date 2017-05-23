@@ -16,7 +16,7 @@ public class PaymentDomain {
     }
 
     public void setPaymentCompleted(Client client) {
-        paymentCompleted=client.hasPaid;
+        paymentCompleted= client.hasPaid;
     }
 
     public void setPaidAmmount(Client client,Service s)

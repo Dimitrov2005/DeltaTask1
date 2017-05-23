@@ -4,27 +4,21 @@ import java.util.ArrayList;
 
 public abstract class Client {
     static Service service;
-    static boolean hasPaid;
+    public boolean hasPaid;
     public Service getService(Client client){
         return client.service;
     }
     public void setService(Service s){
         this.service=s;
     }
-    public static double payMonthlyFee(Service s,double sum){
-        if(s.getPrice()==sum)
-        {
-            hasPaid=true;
-            return sum;
-        }
-        else return 0.0;
-    }
+    public abstract  double payMonthlyFee(Service s,double sum);
+
 }
 class Person extends Client{
     private String address = new String();
     private int number;
     private double money;
-
+    protected boolean hasPaid;
     // class constructor//
     public Person (String address, int number){
         this.address=address;
@@ -39,9 +33,21 @@ class Person extends Client{
         return person.number;
     }
 
+    public double payMonthlyFee(Service s,double sum)
+    {
+        if(s.getPrice()>=sum)
+        {
+            hasPaid=true;
+            return sum;
+        }
+        else {
+            hasPaid = false;
+            return 0.0;
+        }
+    }
 
     public static void main(String[] args) {
-        Person person = new Person("Kapana str.# 3",35919013);
+        Person person = new Person("Kambana str.# 3",35919013);
         PaymentDomain pd = new PaymentDomain();
         System.out.println(person.getAddress(person));
         System.out.println(person.getNumber(person));
@@ -49,20 +55,23 @@ class Person extends Client{
         Service service = new Gold();
         person.setService(service);
         System.out.println(person.getService(person).getName()+"\n price: "+service.getPrice()+" leva");
-        payMonthlyFee(service,person.money);
+        person.payMonthlyFee(service,person.money);
         System.out.println("has paid : "+ person.hasPaid + "  \n ");
         pd.setPaidAmmount(person,service);
         pd.setPaymentCompleted(person);
         System.out.println("paid amount : "+ pd.getPaidAmount(person)+"\n");
         System.out.println("Is the payment completed : "+ pd.isPaymentCompleted(person)+"\n");
-
+        Bill bill=new Bill();
+        bill.setPayable(person);
+        System.out.println(bill.isPayable());
         }
-        }
+}
 class LegalEntity extends Client{
 
     private ArrayList<String> numberArray=new ArrayList<String>();
     private ArrayList<String> addressArray= new ArrayList<String>();
     private double money;
+    protected boolean hasPaid;
     //contructor
     public LegalEntity(String num, String address){
         addressArray.add(address);
@@ -86,7 +95,15 @@ class LegalEntity extends Client{
     public String getNumbers(LegalEntity entity,int indexOfNumber){
         return numberArray.get(indexOfNumber);
     }
-
+    public double payMonthlyFee(Service s,double sum)
+    {
+        if(s.getPrice()>=sum)
+        {
+            hasPaid=true;
+            return sum;
+        }
+        else return 0.0;
+    }
 
 
     public static void main(String[] args) {
