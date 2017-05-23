@@ -1,11 +1,8 @@
 package platform;
-import platform.Client.*;
-
-import java.time.Period;
 
 public class PaymentDomain {
      private double paidAmount;
-     private boolean paymentCompleted;//depends on banking systems,but in this scenario depends whether the client has paid
+     private boolean paymentCompleted;//depends on whether the client has paid
      private static final int SILVER_PRICE=100;
      private static final int GOLD_PRICE=200;
      private static final int PLATINUM_PRICE=300;
