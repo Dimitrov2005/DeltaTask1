@@ -7,25 +7,32 @@ public class Invoice extends Receipt {
     private double totalAmount;
 
     public void setProductName(Client client){
-        productName=LegalEntity.service.getName();
+        productName=client.getService().getName();
     }
 
     @Override
     public void setTotalAmount(Client client) {
-        totalAmount=LegalEntity.service.getPrice();
+        totalAmount=client.getService().getPrice();
     }
 
     @Override
     public String getProductName() {
-        return productName;
+        return this.productName;
     }
 
     @Override
     public double getTotalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
     public String getCompanyName() {
-        return companyName;
+        return this.companyName;
+    }
+
+    public void printInvoice(LegalEntity entity){
+        System.out.println("Invoice for "+entity.getNumbers(entity,1));
+        System.out.println("Total Amount : "+ getTotalAmount());
+        System.out.println("\n Package : "+ getProductName());
+
     }
 }

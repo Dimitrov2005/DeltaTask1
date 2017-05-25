@@ -11,7 +11,7 @@ public class Service {
         SILVER,
         PLATINUM
     }
-    private Services services;
+    Services services;
     // class constructor
     public Service(Services services) {
         this.services = services;
@@ -31,7 +31,7 @@ public class Service {
         }
 
     }
-    public double getPrice()
+    public double getPrice() // gets package price
     {
         switch (services)
         {

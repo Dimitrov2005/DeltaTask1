@@ -5,11 +5,11 @@ public class Bill {
     private boolean payable;
 
     public void setPayable(Client client){
-        if(!client.hasPaid)// if the client hasn't paid=> can pay the bill
-            payable=true;
+        if(!client.isHasPaid())// if the client hasn't paid=> can pay the bill
+            this.payable=true;
 
 
-        else payable=false;
+        else this.payable=false;
     }
 
     public boolean isPayable() {

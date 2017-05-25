@@ -5,7 +5,8 @@ public class Person extends Client {
     private String address = new String();
     private int number;
     private double money;
-    protected boolean hasPaid;
+    Bill bill = new Bill();
+    PurchaseOrder po=new PurchaseOrder();
     // class constructor//
     public Person (String address, int number){
         this.address=address;
@@ -17,19 +18,21 @@ public class Person extends Client {
     }
     // getter for number//
     public int getNumber(Person person){
-        return person.number;
+        return this.number;
     }
 
     public double payMonthlyFee(Service s,double sum)
-    {
+    {   double temp;
         if(s.getPrice()>=sum)
         {
-            hasPaid=true;
-            return sum;
+           setHasPaid(true);
+           temp=sum;
+           return temp;
         }
         else {
-            hasPaid = false;
-            return 0.0;
+            setHasPaid(false);
+            temp=0;
+            return temp;
         }
     }
 
@@ -41,16 +44,20 @@ public class Person extends Client {
         person.money=200;
         Service service = new Service(Service.Services.GOLD);
         person.setService(service);
-        System.out.println(person.getService(person).getName()+"\n price: "+service.getPrice()+" leva");
+        System.out.println(person.getService().getName()+"\n price: "+service.getPrice()+" leva");
         person.payMonthlyFee(service,person.money);
-        System.out.println("has paid : "+ person.hasPaid + "  \n ");
-        pd.setPaidAmmount(person,service);
+        System.out.println("has paid : "+ person.isHasPaid() + "  \n ");
+        pd.setPaidAmount(person);
         pd.setPaymentCompleted(person);
-        System.out.println("paid amount : "+ pd.getPaidAmount(person)+"\n");
-        System.out.println("Is the payment completed : "+ pd.isPaymentCompleted(person)+"\n");
-        Bill bill=new Bill();
-        bill.setPayable(person);
-        System.out.println(bill.isPayable());
+        System.out.println("paid amount : "+ pd.getPaidAmount()+"\n");
+        System.out.println("Is the payment completed : "+ pd.isPaymentCompleted()+"\n");
+
+        person.bill.setPayable(person);
+        System.out.println("is the bill payable: " + person.bill.isPayable());
+
+        person.po.setProductName(person);
+        person.po.setTotalAmount(person);
+        person.po.printPO(person);
     }
 
 }

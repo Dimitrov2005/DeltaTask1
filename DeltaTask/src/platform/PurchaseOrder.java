@@ -5,12 +5,12 @@ public class PurchaseOrder extends Receipt {
     private String productName;
     @Override
     public void setTotalAmount(Client client) {
-        totalAmount=Person.service.getPrice();
+        totalAmount=client.getService().getPrice();
     }
 
     @Override
     public void setProductName(Client client) {
-        productName=Person.service.getName();
+        productName=client.getService().getName();
     }
 
     @Override
@@ -21,5 +21,12 @@ public class PurchaseOrder extends Receipt {
     @Override
     public String getProductName() {
         return productName;
+    }
+
+    public void printPO(Person person){
+
+            System.out.println("Invoice for "+person.getNumber(person));
+            System.out.println("Total Amount : "+ getTotalAmount());
+            System.out.println("\n Package : "+ getProductName());
     }
 }
