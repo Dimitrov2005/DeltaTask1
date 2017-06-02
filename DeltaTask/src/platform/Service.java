@@ -1,10 +1,6 @@
 package platform;
 
 public class Service {
-    //private constant variables for package prices
-    private final double GOLD_PRICE=200.0;
-    private final double SILVER_PRICE=100.0;
-    private final double PLATINUM_PRICE=300.0;
     //enum for different packages
     public enum Services {
         GOLD,
@@ -36,11 +32,11 @@ public class Service {
         switch (services)
         {
             case GOLD:
-                return GOLD_PRICE;
+                return 200.0;
             case SILVER:
-                return SILVER_PRICE;
+                return 100.0;
             case PLATINUM:
-                return PLATINUM_PRICE;
+                return 300.0;
             default:
                 return 0;
         }

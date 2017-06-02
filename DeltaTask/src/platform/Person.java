@@ -1,26 +1,51 @@
 package platform;
 
+public class Person {
+    private String address;
+    private int clientNumber;
+    private boolean hasPaid;
+    private Bill bill;
+    private Service service;
+    private PurchaseOrder purchaseOrder;
 
-public class Person extends Client {
-    private String address = new String();
-    private int number;
-    private double money;
-    Bill bill = new Bill();
-    PurchaseOrder po=new PurchaseOrder();
     // class constructor//
-    public Person (String address, int number){
+    public Person (String address, int number,boolean hasPaid, Bill bill,Service service, PurchaseOrder purchaseOrder){
         this.address=address;
-        this.number=number;
+        this.clientNumber=number;
+        this.hasPaid=hasPaid;
+        this.bill=bill;
+        this.service=service;
+        this.purchaseOrder=purchaseOrder;
     }
+
     // getter for address
-    public String getAddress(Person person){
+    public String getAddress()
+    {
         return this.address;
     }
     // getter for number//
-    public int getNumber(Person person){
-        return this.number;
+    public int getNumber()
+    {
+        return this.clientNumber;
     }
+    // getter for service ref
+    public Service getService()
+    {
+        return this.service;
+    }
+    //getter for bill ref
+    public Bill getBill ()
+    {
+        return this.bill;
+    }
+    //getter for hasPaid
+    public boolean hasPaid()
+    {
+        return this.hasPaid;
+    }
+    public PurchaseOrder getPurchaseOrder(){return this.purchaseOrder;}
 
+    /*
     public double payMonthlyFee(Service s,double sum)
     {   double temp;
         if(s.getPrice()>=sum)
@@ -36,28 +61,12 @@ public class Person extends Client {
         }
     }
 
-    public static void main(String[] args) {
-        Person person = new Person("Kambana str.# 3",35919013);
-        PaymentDomain pd = new PaymentDomain();
-        System.out.println(person.getAddress(person));
-        System.out.println(person.getNumber(person));
-        person.money=200;
-        Service service = new Service(Service.Services.GOLD);
-        person.setService(service);
-        System.out.println(person.getService().getName()+"\n price: "+service.getPrice()+" leva");
-        person.payMonthlyFee(service,person.money);
-        System.out.println("has paid : "+ person.isHasPaid() + "  \n ");
-        pd.setPaidAmount(person);
-        pd.setPaymentCompleted(person);
-        System.out.println("paid amount : "+ pd.getPaidAmount()+"\n");
-        System.out.println("Is the payment completed : "+ pd.isPaymentCompleted()+"\n");
-
-        person.bill.setPayable(person);
-        System.out.println("is the bill payable: " + person.bill.isPayable());
-
-        person.po.setProductName(person);
-        person.po.setTotalAmount(person);
-        person.po.printPO(person);
+    public void printPerson(){
+        System.out.println(hasPaid);
+        System.out.println(address);
+        System.out.println(service.getName());
+        bill.printBill();
+        System.out.println(number);
     }
-
+    */
 }

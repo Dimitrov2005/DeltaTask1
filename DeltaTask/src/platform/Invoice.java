@@ -5,15 +5,15 @@ public class Invoice extends Receipt {
     private final String companyName="GlobalEntertainmentEOOD";
     private String productName;
     private double totalAmount;
+    public int clientNumber;
 
-    public void setProductName(Client client){
-        productName=client.getService().getName();
+    public Invoice(String productName,double totalAmount, int clientNumber ){
+        this.productName=productName;
+        this.totalAmount=totalAmount;
+        this.clientNumber=clientNumber;
     }
 
-    @Override
-    public void setTotalAmount(Client client) {
-        totalAmount=client.getService().getPrice();
-    }
+
 
     @Override
     public String getProductName() {
@@ -29,10 +29,16 @@ public class Invoice extends Receipt {
         return this.companyName;
     }
 
+    @Override
+    public int getClientNumber() {
+        return this.clientNumber;
+    }
+
     public void printInvoice(LegalEntity entity){
-        System.out.println("Invoice for "+entity.getNumbers(entity,1));
-        System.out.println("Total Amount : "+ getTotalAmount());
-        System.out.println("\n Package : "+ getProductName());
+        System.out.println(getCompanyName() + "\n");
+        System.out.println("Invoice for : "+getClientNumber()+"\n");
+        System.out.println("Total Amount : "+getTotalAmount()+"\n");
+        System.out.println("Package : "+getProductName());
 
     }
 }

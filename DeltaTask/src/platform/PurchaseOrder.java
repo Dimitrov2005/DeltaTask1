@@ -1,32 +1,33 @@
 package platform;
 
 public class PurchaseOrder extends Receipt {
+    private int clientNumber;
     private double totalAmount;
     private String productName;
-    @Override
-    public void setTotalAmount(Client client) {
-        totalAmount=client.getService().getPrice();
+    //constructor
+    public PurchaseOrder(double price, String productName,int clientNumber){
+        this.totalAmount=price;
+        this.productName= productName;
+        this.clientNumber=clientNumber;
     }
 
-    @Override
-    public void setProductName(Client client) {
-        productName=client.getService().getName();
-    }
 
-    @Override
+
     public double getTotalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
-    @Override
     public String getProductName() {
-        return productName;
+        return this.productName;
     }
-
+    public int getClientNumber(){
+        return this.clientNumber;
+    }
     public void printPO(Person person){
-
-            System.out.println("Invoice for "+person.getNumber(person));
-            System.out.println("Total Amount : "+ getTotalAmount());
-            System.out.println("\n Package : "+ getProductName());
+                if(person.getNumber()== getClientNumber()) {
+                    System.out.println("Invoice for " + getClientNumber() + "\n");
+                    System.out.println("Total Amount : " + getTotalAmount());
+                    System.out.println("\n Package : " + getProductName());
+                }
     }
 }
